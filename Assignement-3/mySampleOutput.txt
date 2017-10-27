@@ -1,0 +1,277 @@
+-> Is the session interactive? type "yes": no
+----------------------------------------------------------------------
+-> Enter a command: add
+-> Enter the first name and last name: Paulo Kinopk
+-> Enter the address: 8667 Montcal St
+-> A student added:
+	 name: Paulo Kinopk
+	 student number: 7777
+	 address: 8667 Montcal St
+	 login id: pkin1
+	 GPA: NaN
+----------------------------------------------------------------------
+-> Enter a command: course
+-> Enter the student number: 7777
+-> Enter the grade points for a course: -3.0
+->** The grade points cannot be negative  **<-
+----------------------------------------------------------------------
+-> Enter a command: comment
+negative grade
+----------------------------------------------------------------------
+-> Enter a command: course
+-> Enter the student number: 7777
+-> Enter the grade points for a course: 40.0
+-> Enter the credit units for the course: 3
+->** Failed to add the course for student 7777 **<-
+----------------------------------------------------------------------
+-> Enter a command: comment
+grade bigger than 4.33
+----------------------------------------------------------------------
+-> Enter a command: course
+-> Enter the student number: 7777
+-> Enter the grade points for a course: 4.0
+-> Enter the credit units for the course: 3
+-> A student 's course was added:
+	 name: Paulo Kinopk
+	 student number: 7777
+	 address: 8667 Montcal St
+	 login id: pkin1
+	 GPA: 4.0
+----------------------------------------------------------------------
+-> Enter a command: course
+-> Enter the student number: 7777
+-> Enter the grade points for a course: 4.3
+-> Enter the credit units for the course: 2
+-> A student 's course was added:
+	 name: Paulo Kinopk
+	 student number: 7777
+	 address: 8667 Montcal St
+	 login id: pkin1
+	 GPA: 4.1
+----------------------------------------------------------------------
+-> Enter a command: highest
+-> A student with the highest GPA:
+	 name: Paulo Kinopk
+	 student number: 7777
+	 address: 8667 Montcal St
+	 login id: pkin1
+	 GPA: 4.1
+----------------------------------------------------------------------
+-> Enter a command: add
+-> Enter the first name and last name: John Rubik
+-> Enter the address: 1234 Grandville St
+-> A student added:
+	 name: John Rubik
+	 student number: 7778
+	 address: 1234 Grandville St
+	 login id: jrub2
+	 GPA: NaN
+----------------------------------------------------------------------
+-> Enter a command: course
+-> Enter the student number: 7778
+-> Enter the grade points for a course: 4.2
+-> Enter the credit units for the course: 3
+-> A student 's course was added:
+	 name: John Rubik
+	 student number: 7778
+	 address: 1234 Grandville St
+	 login id: jrub2
+	 GPA: 4.2
+----------------------------------------------------------------------
+-> Enter a command: highest
+-> A student with the highest GPA:
+	 name: John Rubik
+	 student number: 7778
+	 address: 1234 Grandville St
+	 login id: jrub2
+	 GPA: 4.2
+----------------------------------------------------------------------
+-> Enter a command: find
+-> Enter the student number: 7777
+-> A student found:
+	 name: Paulo Kinopk
+	 student number: 7777
+	 address: 8667 Montcal St
+	 login id: pkin1
+	 GPA: 4.1
+----------------------------------------------------------------------
+-> Enter a command: find
+-> Enter the student number: 7778
+-> A student found:
+	 name: John Rubik
+	 student number: 7778
+	 address: 1234 Grandville St
+	 login id: jrub2
+	 GPA: 4.2
+----------------------------------------------------------------------
+-> Enter a command: total
+Number of students: 2
+----------------------------------------------------------------------
+-> Enter a command: printall
+[Name: Paulo Kinopk] [ID: pkin1] [Student#: 7777]
+[Name: John Rubik] [ID: jrub2] [Student#: 7778]
+
+----------------------------------------------------------------------
+-> Enter a command: remove
+-> Enter the student number: 7777
+-> A student removed:
+	 name: Paulo Kinopk
+	 student number: 7777
+	 address: 8667 Montcal St
+	 login id: pkin1
+	 GPA: 4.1
+----------------------------------------------------------------------
+-> Enter a command: find
+-> Enter the student number: 7777
+->** No match for this student number in our records **<-
+----------------------------------------------------------------------
+-> Enter a command: comment
+trying to find a login of a student already removed
+----------------------------------------------------------------------
+-> Enter a command: highest
+-> A student with the highest GPA:
+	 name: John Rubik
+	 student number: 7778
+	 address: 1234 Grandville St
+	 login id: jrub2
+	 GPA: 4.2
+----------------------------------------------------------------------
+-> Enter a command: add
+-> Enter the first name and last name: Bob Marley
+-> Enter the address: 5678 High St
+-> A student added:
+	 name: Bob Marley
+	 student number: 7779
+	 address: 5678 High St
+	 login id: bmar3
+	 GPA: NaN
+----------------------------------------------------------------------
+-> Enter a command: printall
+[Name: John Rubik] [ID: jrub2] [Student#: 7778]
+[Name: Bob Marley] [ID: bmar3] [Student#: 7779]
+
+----------------------------------------------------------------------
+-> Enter a command: course
+-> Enter the student number: 7779
+-> Enter the grade points for a course: 1
+-> Enter the credit units for the course: 3
+-> A student 's course was added:
+	 name: Bob Marley
+	 student number: 7779
+	 address: 5678 High St
+	 login id: bmar3
+	 GPA: 1.0
+----------------------------------------------------------------------
+-> Enter a command: remove
+-> Enter the student number: 7778
+-> A student removed:
+	 name: John Rubik
+	 student number: 7778
+	 address: 1234 Grandville St
+	 login id: jrub2
+	 GPA: 4.2
+----------------------------------------------------------------------
+-> Enter a command: remove
+-> Enter the student number: 7777
+->** No match for this student number in our records **<-
+----------------------------------------------------------------------
+-> Enter a command: comment
+trying to remove a student that was already removed
+----------------------------------------------------------------------
+-> Enter a command: highest
+-> A student with the highest GPA:
+	 name: Bob Marley
+	 student number: 7779
+	 address: 5678 High St
+	 login id: bmar3
+	 GPA: 1.0
+----------------------------------------------------------------------
+-> Enter a command: total
+Number of students: 1
+----------------------------------------------------------------------
+-> Enter a command: printall
+[Name: Bob Marley] [ID: bmar3] [Student#: 7779]
+
+----------------------------------------------------------------------
+-> Enter a command: add
+-> Enter the first name and last name: Bob Marley
+-> Enter the address: 5678 High St
+-> A student added:
+	 name: Bob Marley
+	 student number: 7780
+	 address: 5678 High St
+	 login id: bmar4
+	 GPA: NaN
+----------------------------------------------------------------------
+-> Enter a command: comment
+trying to duplicated students
+----------------------------------------------------------------------
+-> Enter a command: login
+-> Enter the student number: 7777
+->** No match for this student number in our records **<-
+----------------------------------------------------------------------
+-> Enter a command: login
+-> Enter the student number: 7780
+-> the login id is bmar4
+----------------------------------------------------------------------
+-> Enter a command: login
+-> Enter the student number: 7779
+-> the login id is bmar3
+----------------------------------------------------------------------
+-> Enter a command: invalidcommand
+->** ignoring the invalid command **<-
+----------------------------------------------------------------------
+-> Enter a command: invalidcommand
+->** ignoring the invalid command **<-
+----------------------------------------------------------------------
+-> Enter a command: invalidcommand
+->** ignoring the invalid command **<-
+----------------------------------------------------------------------
+-> Enter a command: invalidcommand
+->** ignoring the invalid command **<-
+----------------------------------------------------------------------
+-> Enter a command: invalidcommand
+->** ignoring the invalid command **<-
+----------------------------------------------------------------------
+-> Enter a command: comment
+just testing some invalid commands
+----------------------------------------------------------------------
+-> Enter a command: add
+-> Enter the first name and last name: JohnLocke
+->** "JohnLocke" should be a first name followed by a last name on a single line **<-
+----------------------------------------------------------------------
+-> Enter a command: add
+-> Enter the first name and last name: John_Locke
+->** "John_Locke" should be a first name followed by a last name on a single line **<-
+----------------------------------------------------------------------
+-> Enter a command: comment
+student with only one name
+----------------------------------------------------------------------
+-> Enter a command: add
+-> Enter the first name and last name: John             Locke
+-> Enter the address: 4-8-15-16-23-42 Lost Island
+-> A student added:
+	 name: John             Locke
+	 student number: 7781
+	 address: 4-8-15-16-23-42 Lost Island
+	 login id: jloc5
+	 GPA: NaN
+----------------------------------------------------------------------
+-> Enter a command: comment
+student with spaces between first and last name
+----------------------------------------------------------------------
+-> Enter a command: course
+-> Enter the student number: 7780
+-> Enter the grade points for a course: 4.33
+-> Enter the credit units for the course: 999999999
+-> A student 's course was added:
+	 name: Bob Marley
+	 student number: 7780
+	 address: 5678 High St
+	 login id: bmar4
+	 GPA: 4.3
+----------------------------------------------------------------------
+-> Enter a command: comment
+no one can beat John Locke
+----------------------------------------------------------------------
+-> Enter a command: quit

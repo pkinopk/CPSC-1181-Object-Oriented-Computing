@@ -1,0 +1,98 @@
+no
+add
+Paulo Kinopk
+8667 Montcal St
+course
+7777
+-3.0
+comment
+negative grade
+course
+7777
+40.0
+3
+comment
+grade bigger than 4.33
+course
+7777
+4.0
+3
+course
+7777
+4.3
+2
+highest
+add
+John Rubik
+1234 Grandville St
+course
+7778
+4.2
+3
+highest
+find
+7777
+find
+7778
+total
+printall
+remove
+7777
+find
+7777
+comment
+trying to find a login of a student already removed
+highest
+add
+Bob Marley
+5678 High St
+printall
+course
+7779
+1
+3
+remove
+7778
+remove
+7777
+comment
+trying to remove a student that was already removed
+highest
+total
+printall
+add
+Bob Marley
+5678 High St
+comment
+trying to duplicated students
+login
+7777
+login
+7780
+login
+7779
+invalidcommand
+invalidcommand
+invalidcommand
+invalidcommand
+invalidcommand
+comment
+just testing some invalid commands
+add
+JohnLocke
+add
+John_Locke
+comment
+student with only one name
+add
+John             Locke
+4-8-15-16-23-42 Lost Island
+comment
+student with spaces between first and last name
+course
+7780
+4.33
+999999999
+comment
+no one can beat John Locke
+quit
