@@ -53,4 +53,17 @@ public class RectangleComponent2 extends JComponent {
 	public int getBoxSize() {
 		return BOX_SIZE;
 	}
+
+	/**
+	 * Moves the rectangle by a given amount.
+	 * 
+	 * @param dx
+	 *            the amount to move in the x-direction
+	 * @param dy
+	 *            the amount to move in the y-direction
+	 */
+	public void moveRectangleBy(int dx, int dy) {
+		box.translate(dx, dy);
+		repaint();
+	}
 }
