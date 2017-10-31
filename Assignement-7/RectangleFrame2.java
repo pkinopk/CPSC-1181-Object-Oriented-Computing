@@ -25,21 +25,34 @@ public class RectangleFrame2 extends JFrame {
 
 		// Do-nothing methods
 		public void mouseReleased(MouseEvent event) {
+			int shift = scene.getShift();
 			int x = event.getX();
 			int y = event.getY();
 			int closest = getClosestPoint(x, y);
 
 			if (closest == 1) {
-				scene.moveRectangleTo(x, y);
+				scene.moveRectangleTo(x - shift, y);
 			}
 			if (closest == 2) {
-				scene.moveRectangleTo(x - size, y);
+				scene.moveRectangleTo(x - shift - size, y);
 			}
 			if (closest == 3) {
-				scene.moveRectangleTo(x, y - size);
+				scene.moveRectangleTo(x - shift, y - size);
 			}
 			if (closest == 4) {
-				scene.moveRectangleTo(x - size, y - size);
+				scene.moveRectangleTo(x - shift - size, y - size);
+			}
+			if (closest == 5) {
+				scene.moveRectangleTo(x, y + shift - size);
+			}
+			if (closest == 6) {
+				scene.moveRectangleTo(x - size, y + shift - size);
+			}
+			if (closest == 7) {
+				scene.moveRectangleTo(x, y + shift - size - size);
+			}
+			if (closest == 8) {
+				scene.moveRectangleTo(x - size, y + shift - size - size);
 			}
 		}
 
@@ -90,6 +103,7 @@ public class RectangleFrame2 extends JFrame {
 	}
 
 	public int getClosestPoint(int x, int y) {
+		int shift = scene.getShift();
 		int oldX = scene.getBoxX();
 		int oldY = scene.getBoxY();
 		int size = scene.getBoxSize();
@@ -97,11 +111,17 @@ public class RectangleFrame2 extends JFrame {
 		int closestPoint = 1;
 
 		Point p0 = new Point(x, y); // where it was clicked
-
+		// TODO CHANGE POINT TO AN ARRAY
+		// Box 1
 		Point p1 = new Point(oldX, oldY); // top left
 		Point p2 = new Point(oldX + size, oldY); // top right
 		Point p3 = new Point(oldX, oldY + size); // bottom left
 		Point p4 = new Point(oldX + size, oldY + size); // bottom right
+		// Box 2
+		Point p5 = new Point(oldX, oldY + shift); // top left
+		Point p6 = new Point(oldX + size, oldY + shift); // top right
+		Point p7 = new Point(oldX, oldY + size + shift); // bottom left
+		Point p8 = new Point(oldX + size, oldY + size + shift); // bottom right
 
 		closest = p0.distance(p1);
 		if (p0.distance(p2) < closest) {
@@ -116,7 +136,25 @@ public class RectangleFrame2 extends JFrame {
 			closest = p0.distance(p4);
 			closestPoint = 4;
 		}
+		if (p0.distance(p5) < closest) {
+			closest = p0.distance(p5);
+			closestPoint = 5;
+		}
+		if (p0.distance(p6) < closest) {
+			closest = p0.distance(p6);
+			closestPoint = 6;
+		}
+		if (p0.distance(p7) < closest) {
+			closest = p0.distance(p7);
+			closestPoint = 7;
+		}
+		if (p0.distance(p8) < closest) {
+			closest = p0.distance(p8);
+			closestPoint = 8;
+		}
+		// System.out.println(closestPoint); // TODO to be removed
 		return closestPoint;
+
 	}
 
 	public boolean checkBoundaries(int direction) {
@@ -126,6 +164,7 @@ public class RectangleFrame2 extends JFrame {
 		int x = scene.getBoxX();
 		int y = scene.getBoxY();
 		int size = scene.getBoxSize();
+		int shift = scene.getShift();
 
 		if (direction == 1) {
 			if (y > 0) {
@@ -134,7 +173,7 @@ public class RectangleFrame2 extends JFrame {
 		}
 
 		if (direction == 2) {
-			if (y + size + 1 < h) {
+			if (y + size + 1 + shift < h) {
 				return true;
 			}
 		}
@@ -146,7 +185,7 @@ public class RectangleFrame2 extends JFrame {
 		}
 
 		if (direction == 4) {
-			if (x > 0) {
+			if (x - shift > 0) {
 				return true;
 			}
 		}

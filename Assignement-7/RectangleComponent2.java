@@ -1,6 +1,7 @@
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Polygon;
 import java.awt.Rectangle;
 
 import javax.swing.JComponent;
@@ -12,17 +13,42 @@ public class RectangleComponent2 extends JComponent {
 	private static final int BOX_X = 100;
 	private static final int BOX_Y = 100;
 	private static final int BOX_SIZE = 100;
+	private static final int SHIFT = 50;
 
-	private Rectangle box;
+	private Rectangle box1;
+	private Rectangle box2;
+	private Polygon[] lines;
+	Graphics2D g2; // TODO remove
 
 	public RectangleComponent2() {
 		// The rectangle that the paintComponent method draws
-		box = new Rectangle(BOX_X, BOX_Y, BOX_SIZE, BOX_SIZE);
+		box1 = new Rectangle(BOX_X + SHIFT, BOX_Y, BOX_SIZE, BOX_SIZE);
+		box2 = new Rectangle(BOX_X, BOX_Y + SHIFT, BOX_SIZE, BOX_SIZE);
+		lines = new Polygon[4];
+		lines[0] = new Polygon();
+		lines[0].addPoint(BOX_X + SHIFT, BOX_Y);
+		lines[0].addPoint(BOX_X, BOX_Y + SHIFT);
+		lines[1] = new Polygon();
+		lines[1].addPoint(BOX_X + SHIFT + BOX_SIZE, BOX_Y);
+		lines[1].addPoint(BOX_X + BOX_SIZE, BOX_Y + SHIFT);
+		lines[2] = new Polygon();
+		lines[2].addPoint(BOX_X + SHIFT, BOX_Y + BOX_SIZE);
+		lines[2].addPoint(BOX_X, BOX_Y + SHIFT + BOX_SIZE);
+		lines[3] = new Polygon();
+		lines[3].addPoint(BOX_X + SHIFT + BOX_SIZE, BOX_Y + BOX_SIZE);
+		lines[3].addPoint(BOX_X + BOX_SIZE, BOX_Y + SHIFT + BOX_SIZE);
+
 	}
 
 	public void paintComponent(Graphics g) {
-		Graphics2D g2 = (Graphics2D) g;
-		g2.draw(box);
+		g2 = (Graphics2D) g;
+		g2.draw(box1);
+		g2.draw(box2);
+		for (int i = 0; i < lines.length; i++) {
+			g2.draw(lines[i]);
+		}
+
+		// drawLines(100, 100);
 	}
 
 	/**
@@ -34,20 +60,30 @@ public class RectangleComponent2 extends JComponent {
 	 *            the y-position of the new location
 	 */
 	public void moveRectangleTo(int x, int y) {
-		box.setLocation(x, y);
+		box1.setLocation(x + SHIFT, y);
+		box2.setLocation(x, y + SHIFT);
+		// TODO update the lines position
 		repaint();
 	}
 
+	public void drawLines(int x, int y) {
+		g2.drawLine(x + SHIFT, y, x, y + SHIFT);
+		g2.drawLine(x + SHIFT + BOX_SIZE, y, BOX_X + BOX_SIZE, y + SHIFT);
+		g2.drawLine(x + SHIFT, y + BOX_SIZE, x, y + SHIFT + BOX_SIZE);
+		g2.drawLine(x + SHIFT + BOX_SIZE, y + BOX_SIZE, BOX_X + BOX_SIZE, y
+				+ SHIFT + BOX_SIZE);
+	}
+
 	public Point getBoxLocation() {
-		return box.getLocation();
+		return box1.getLocation();
 	}
 
 	public int getBoxX() {
-		return (int) box.getX();
+		return (int) box1.getX();
 	}
 
 	public int getBoxY() {
-		return (int) box.getY();
+		return (int) box1.getY();
 	}
 
 	public int getBoxSize() {
@@ -63,7 +99,12 @@ public class RectangleComponent2 extends JComponent {
 	 *            the amount to move in the y-direction
 	 */
 	public void moveRectangleBy(int dx, int dy) {
-		box.translate(dx, dy);
+		box1.translate(dx, dy);
+		box2.translate(dx, dy);
 		repaint();
+	}
+
+	public int getShift() {
+		return SHIFT;
 	}
 }
