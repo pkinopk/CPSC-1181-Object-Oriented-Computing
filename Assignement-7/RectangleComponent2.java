@@ -1,10 +1,11 @@
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.Rectangle;
 
 import javax.swing.JComponent;
+
+//TODO update all javadoc comments
 
 /**
  * This component displays a rectangle that can be moved.
@@ -18,29 +19,34 @@ public class RectangleComponent2 extends JComponent {
 	private Rectangle box1;
 	private Rectangle box2;
 	private Polygon[] lines;
-	Graphics2D g2; // TODO remove
 
+	/**
+	 * 
+	 */
 	public RectangleComponent2() {
 		// The rectangle that the paintComponent method draws
 		box1 = new Rectangle(BOX_X + SHIFT, BOX_Y, BOX_SIZE, BOX_SIZE);
 		box2 = new Rectangle(BOX_X, BOX_Y + SHIFT, BOX_SIZE, BOX_SIZE);
 
 		lines = new Polygon[4];
-		lines[0] = new Polygon(new int[] { BOX_X + SHIFT, BOX_Y }, new int[] { BOX_X, BOX_Y + SHIFT }, 2);
+		lines[0] = new Polygon(new int[] { BOX_X + SHIFT, BOX_X }, new int[] { BOX_Y, BOX_Y + SHIFT }, 2);
 		lines[1] = new Polygon(new int[] { BOX_X + SHIFT + BOX_SIZE, BOX_X + BOX_SIZE }, new int[] { BOX_Y, BOX_Y + SHIFT }, 2);
 		lines[2] = new Polygon(new int[] { BOX_X + SHIFT, BOX_X }, new int[] { BOX_Y + BOX_SIZE, BOX_Y + SHIFT + BOX_SIZE }, 2);
-		lines[3] = new Polygon(new int[] { BOX_X + SHIFT + BOX_SIZE, BOX_Y + BOX_SIZE }, new int[] { BOX_X + BOX_SIZE, BOX_Y + SHIFT + BOX_SIZE }, 2);
+		lines[3] = new Polygon(new int[] { BOX_X + SHIFT + BOX_SIZE, BOX_X + BOX_SIZE }, new int[] { BOX_Y + BOX_SIZE, BOX_Y + SHIFT + BOX_SIZE }, 2);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+	 */
 	public void paintComponent(Graphics g) {
-		g2 = (Graphics2D) g;
+		Graphics2D g2 = (Graphics2D) g;
 		g2.draw(box1);
 		g2.draw(box2);
 		for (int i = 0; i < lines.length; i++) {
 			g2.draw(lines[i]);
 		}
-
-		// drawLines(100, 100);
 	}
 
 	/**
@@ -61,18 +67,23 @@ public class RectangleComponent2 extends JComponent {
 		repaint();
 	}
 
-	public Point getBoxLocation() {
-		return box1.getLocation();
-	}
-
+	/**
+	 * @return
+	 */
 	public int getBoxX() {
 		return (int) box1.getX();
 	}
 
+	/**
+	 * @return
+	 */
 	public int getBoxY() {
 		return (int) box1.getY();
 	}
 
+	/**
+	 * @return
+	 */
 	public int getBoxSize() {
 		return BOX_SIZE;
 	}
@@ -88,9 +99,15 @@ public class RectangleComponent2 extends JComponent {
 	public void moveRectangleBy(int dx, int dy) {
 		box1.translate(dx, dy);
 		box2.translate(dx, dy);
+		for (int i = 0; i < 4; i++) {
+			lines[i].translate(dx, dy);
+		}
 		repaint();
 	}
 
+	/**
+	 * @return
+	 */
 	public int getShift() {
 		return SHIFT;
 	}
