@@ -24,20 +24,12 @@ public class RectangleComponent2 extends JComponent {
 		// The rectangle that the paintComponent method draws
 		box1 = new Rectangle(BOX_X + SHIFT, BOX_Y, BOX_SIZE, BOX_SIZE);
 		box2 = new Rectangle(BOX_X, BOX_Y + SHIFT, BOX_SIZE, BOX_SIZE);
-		lines = new Polygon[4];
-		lines[0] = new Polygon();
-		lines[0].addPoint(BOX_X + SHIFT, BOX_Y);
-		lines[0].addPoint(BOX_X, BOX_Y + SHIFT);
-		lines[1] = new Polygon();
-		lines[1].addPoint(BOX_X + SHIFT + BOX_SIZE, BOX_Y);
-		lines[1].addPoint(BOX_X + BOX_SIZE, BOX_Y + SHIFT);
-		lines[2] = new Polygon();
-		lines[2].addPoint(BOX_X + SHIFT, BOX_Y + BOX_SIZE);
-		lines[2].addPoint(BOX_X, BOX_Y + SHIFT + BOX_SIZE);
-		lines[3] = new Polygon();
-		lines[3].addPoint(BOX_X + SHIFT + BOX_SIZE, BOX_Y + BOX_SIZE);
-		lines[3].addPoint(BOX_X + BOX_SIZE, BOX_Y + SHIFT + BOX_SIZE);
 
+		lines = new Polygon[4];
+		lines[0] = new Polygon(new int[] { BOX_X + SHIFT, BOX_Y }, new int[] { BOX_X, BOX_Y + SHIFT }, 2);
+		lines[1] = new Polygon(new int[] { BOX_X + SHIFT + BOX_SIZE, BOX_X + BOX_SIZE }, new int[] { BOX_Y, BOX_Y + SHIFT }, 2);
+		lines[2] = new Polygon(new int[] { BOX_X + SHIFT, BOX_X }, new int[] { BOX_Y + BOX_SIZE, BOX_Y + SHIFT + BOX_SIZE }, 2);
+		lines[3] = new Polygon(new int[] { BOX_X + SHIFT + BOX_SIZE, BOX_Y + BOX_SIZE }, new int[] { BOX_X + BOX_SIZE, BOX_Y + SHIFT + BOX_SIZE }, 2);
 	}
 
 	public void paintComponent(Graphics g) {
@@ -62,16 +54,11 @@ public class RectangleComponent2 extends JComponent {
 	public void moveRectangleTo(int x, int y) {
 		box1.setLocation(x + SHIFT, y);
 		box2.setLocation(x, y + SHIFT);
-		// TODO update the lines position
+		lines[0] = new Polygon(new int[] { x + SHIFT, x }, new int[] { y, y + SHIFT }, 2);
+		lines[1] = new Polygon(new int[] { x + SHIFT + BOX_SIZE, x + BOX_SIZE }, new int[] { y, y + SHIFT }, 2);
+		lines[2] = new Polygon(new int[] { x + SHIFT, x }, new int[] { y + BOX_SIZE, y + SHIFT + BOX_SIZE }, 2);
+		lines[3] = new Polygon(new int[] { x + SHIFT + BOX_SIZE, x + BOX_SIZE }, new int[] { y + BOX_SIZE, y + SHIFT + BOX_SIZE }, 2);
 		repaint();
-	}
-
-	public void drawLines(int x, int y) {
-		g2.drawLine(x + SHIFT, y, x, y + SHIFT);
-		g2.drawLine(x + SHIFT + BOX_SIZE, y, BOX_X + BOX_SIZE, y + SHIFT);
-		g2.drawLine(x + SHIFT, y + BOX_SIZE, x, y + SHIFT + BOX_SIZE);
-		g2.drawLine(x + SHIFT + BOX_SIZE, y + BOX_SIZE, BOX_X + BOX_SIZE, y
-				+ SHIFT + BOX_SIZE);
 	}
 
 	public Point getBoxLocation() {

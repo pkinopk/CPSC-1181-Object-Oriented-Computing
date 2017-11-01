@@ -13,6 +13,9 @@ import javax.swing.KeyStroke;
 public class RectangleFrame2 extends JFrame {
 	private static final int FRAME_WIDTH = 800;
 	private static final int FRAME_HEIGHT = 600;
+	private int x;
+	private int y;
+	private int closest;
 
 	private RectangleComponent2 scene;
 
@@ -20,16 +23,16 @@ public class RectangleFrame2 extends JFrame {
 		int size = scene.getBoxSize();
 
 		public void mousePressed(MouseEvent event) {
+			x = event.getX();
+			y = event.getY();
+			closest = getClosestPoint(x, y);
 
 		}
 
-		// Do-nothing methods
 		public void mouseReleased(MouseEvent event) {
+			x = event.getX();
+			y = event.getY();
 			int shift = scene.getShift();
-			int x = event.getX();
-			int y = event.getY();
-			int closest = getClosestPoint(x, y);
-
 			if (closest == 1) {
 				scene.moveRectangleTo(x - shift, y);
 			}
@@ -56,6 +59,7 @@ public class RectangleFrame2 extends JFrame {
 			}
 		}
 
+		// Do-nothing methods
 		public void mouseClicked(MouseEvent event) {
 		}
 
@@ -68,8 +72,7 @@ public class RectangleFrame2 extends JFrame {
 
 	class KeyStrokeListener implements KeyListener {
 		public void keyPressed(KeyEvent event) {
-			String key = KeyStroke.getKeyStrokeForEvent(event).toString()
-					.replace("pressed ", "");
+			String key = KeyStroke.getKeyStrokeForEvent(event).toString().replace("pressed ", "");
 			if (key.equals("DOWN") && checkBoundaries(2)) {
 				scene.moveRectangleBy(0, 1);
 			} else if (key.equals("UP") && checkBoundaries(1)) {
