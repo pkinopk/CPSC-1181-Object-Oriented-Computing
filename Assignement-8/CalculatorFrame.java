@@ -21,6 +21,8 @@ public class CalculatorFrame extends JFrame {
 	private JLabel resultLabel;
 	private double balance;
 
+	private int firstInt;
+
 	public CalculatorFrame() {
 		balance = INITIAL_BALANCE;
 		resultLabel = new JLabel("Result");
@@ -38,59 +40,41 @@ public class CalculatorFrame extends JFrame {
 
 	class CalculateExpression implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
+
 			String s = rateField.getText();
+			System.out.println(s);
 			Scanner in = new Scanner(s);
 			int firstInt = 0;
-			String operator = "";
+			String operator = "!";
 			int secondInt = 0;
 			String rest;
 
 			try {
 				firstInt = in.nextInt();
+				try {
+					operator = in.next();
+
+					try {
+						secondInt = in.nextInt();
+						try {
+							rest = in.next();
+							throw new InputMismatchException("More than just 2 operands and an operator");
+						} catch (Exception e) { // TODO NOT WORKING
+						}
+					} catch (InputMismatchException e) {
+						resultLabel.setText("Second operand is not an Integer");
+					} catch (NoSuchElementException e) {
+						resultLabel.setText("Missing second operand");
+					}
+				} catch (NoSuchElementException e) {
+					resultLabel.setText("Missing operator");
+				}
 			} catch (InputMismatchException e) {
 				resultLabel.setText("First operand is not an Integer");
 			} catch (NoSuchElementException e) {
 				resultLabel.setText("Missing first operand");
 			}
-
-			try {
-				operator = in.next();
-			} catch (NoSuchElementException e) {
-				resultLabel.setText("Missing operator");
-			}
-
-			try {
-				secondInt = in.nextInt();
-			} catch (InputMismatchException e) {
-				resultLabel.setText("Second operand is not an Integer");
-			} catch (NoSuchElementException e) {
-				resultLabel.setText("Missing second operand");
-			}
-
-			switch (operator) {
-			case "+":
-				resultLabel.setText("Result: " + Integer.toString(firstInt + secondInt));
-				break;
-			case "-":
-				resultLabel.setText("Result: " + Integer.toString(firstInt - secondInt));
-				break;
-			case "*":
-				resultLabel.setText("Result: " + Integer.toString(firstInt * secondInt));
-				break;
-			case "/": // TODO division by 0???
-				int result = firstInt / secondInt;
-				resultLabel.setText("Result: " + result);
-				break;
-			case "%":
-				resultLabel.setText("Result: " + Integer.toString(firstInt % secondInt));
-				break;
-			case "^":
-				resultLabel.setText("Result: " + (int) Math.pow(firstInt, secondInt));
-				break;
-			default:
-				resultLabel.setText("Illegal operator " + '"' + operator + '"');
-				break;
-			}
+			calculate(firstInt, operator, secondInt);
 
 			// TODO REST
 			// try {
@@ -103,7 +87,39 @@ public class CalculatorFrame extends JFrame {
 			// balance = balance + interest;
 			// resultLabel.setText("Balance: " + balance);
 		}
+	}
 
+	private void calculate(int firstInt, String s, int secondInt) {
+		switch (s) {
+		case "+":
+			resultLabel.setText("Result: " + Integer.toString(firstInt + secondInt));
+			break;
+		case "-":
+			resultLabel.setText("Result: " + Integer.toString(firstInt - secondInt));
+			break;
+		case "*":
+			resultLabel.setText("Result: " + Integer.toString(firstInt * secondInt));
+			break;
+		case "/":
+			try {
+				int result = firstInt / secondInt;
+				resultLabel.setText("Result: " + result);
+			} catch (ArithmeticException e) {
+				resultLabel.setText("/ by zero");
+			}
+			break;
+		case "%":
+			resultLabel.setText("Result: " + Integer.toString(firstInt % secondInt));
+			break;
+		case "^":
+			resultLabel.setText("Result: " + (int) Math.pow(firstInt, secondInt));
+			break;
+		case "!":
+			resultLabel.setText("Missing operator");
+			break;
+		default:
+			break;
+		}
 	}
 
 	private void createButton() {
