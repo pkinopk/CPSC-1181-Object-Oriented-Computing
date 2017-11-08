@@ -13,19 +13,13 @@ import javax.swing.JTextField;
 public class CalculatorFrame extends JFrame {
 	private static final int FRAME_WIDTH = 450;
 	private static final int FRAME_HEIGHT = 100;
-	private static final double DEFAULT_RATE = 5;
-	private static final double INITIAL_BALANCE = 1000;
 
-	private JTextField rateField;
+	private JTextField dataEntry;
 	private JButton calculate;
 	private JLabel resultLabel;
-	private double balance;
-
-	private int firstInt;
 
 	public CalculatorFrame() {
-		balance = INITIAL_BALANCE;
-		resultLabel = new JLabel("Result");
+		resultLabel = new JLabel("");
 		createTextField();
 		createButton();
 		createPanel();
@@ -35,18 +29,17 @@ public class CalculatorFrame extends JFrame {
 	private void createTextField() {
 
 		final int FIELD_WIDTH = 10;
-		rateField = new JTextField(FIELD_WIDTH);
+		dataEntry = new JTextField(FIELD_WIDTH);
 	}
 
 	class CalculateExpression implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 
-			String s = rateField.getText();
-			System.out.println(s);
+			String s = dataEntry.getText();
 			Scanner in = new Scanner(s);
-			int firstInt = 0;
-			String operator = "!";
-			int secondInt = 0;
+			int firstInt;
+			String operator;
+			int secondInt;
 			String rest;
 
 			try {
@@ -57,9 +50,8 @@ public class CalculatorFrame extends JFrame {
 					try {
 						secondInt = in.nextInt();
 						try {
-							rest = in.next();
-							throw new InputMismatchException("More than just 2 operands and an operator");
-						} catch (Exception e) { // TODO NOT WORKING
+							calculate(firstInt, operator, secondInt);
+						} catch (Exception e) {
 						}
 					} catch (InputMismatchException e) {
 						resultLabel.setText("Second operand is not an Integer");
@@ -74,18 +66,6 @@ public class CalculatorFrame extends JFrame {
 			} catch (NoSuchElementException e) {
 				resultLabel.setText("Missing first operand");
 			}
-			calculate(firstInt, operator, secondInt);
-
-			// TODO REST
-			// try {
-			// rest = in.next();
-			// } catch (NoSuchElementException e) {
-			// System.out.println("FIX operand is not an Integer: " + e);
-			// }
-
-			// double interest = balance * rate / 100;
-			// balance = balance + interest;
-			// resultLabel.setText("Balance: " + balance);
 		}
 	}
 
@@ -114,9 +94,6 @@ public class CalculatorFrame extends JFrame {
 		case "^":
 			resultLabel.setText("Result: " + (int) Math.pow(firstInt, secondInt));
 			break;
-		case "!":
-			resultLabel.setText("Missing operator");
-			break;
 		default:
 			break;
 		}
@@ -130,7 +107,7 @@ public class CalculatorFrame extends JFrame {
 
 	private void createPanel() {
 		JPanel panel = new JPanel();
-		panel.add(rateField);
+		panel.add(dataEntry);
 		panel.add(calculate);
 		panel.add(resultLabel);
 		add(panel);
