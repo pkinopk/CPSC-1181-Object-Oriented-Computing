@@ -13,7 +13,7 @@ public class FrameViewer {
 		frame.setTitle("Head");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		HeadComponent h = new HeadComponent();
+		FishComponent h = new FishComponent();
 		frame.add(h);
 
 		frame.setVisible(true);
