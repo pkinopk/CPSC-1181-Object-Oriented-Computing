@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.InputMismatchException;
@@ -54,16 +55,21 @@ public class CalculatorFrame extends JFrame {
 						} catch (Exception e) {
 						}
 					} catch (InputMismatchException e) {
+						resultLabel.setForeground(Color.RED);
 						resultLabel.setText("Second operand is not an Integer");
 					} catch (NoSuchElementException e) {
+						resultLabel.setForeground(Color.RED);
 						resultLabel.setText("Missing second operand");
 					}
 				} catch (NoSuchElementException e) {
+					resultLabel.setForeground(Color.RED);
 					resultLabel.setText("Missing operator");
 				}
 			} catch (InputMismatchException e) {
+				resultLabel.setForeground(Color.RED);
 				resultLabel.setText("First operand is not an Integer");
 			} catch (NoSuchElementException e) {
+				resultLabel.setForeground(Color.RED);
 				resultLabel.setText("Missing first operand");
 			}
 		}
@@ -85,6 +91,7 @@ public class CalculatorFrame extends JFrame {
 				int result = firstInt / secondInt;
 				resultLabel.setText("Result: " + result);
 			} catch (ArithmeticException e) {
+				resultLabel.setForeground(Color.RED);
 				resultLabel.setText("/ by zero");
 			}
 			break;
@@ -95,14 +102,17 @@ public class CalculatorFrame extends JFrame {
 			resultLabel.setText("Result: " + (int) Math.pow(firstInt, secondInt));
 			break;
 		default:
+			resultLabel.setText("Invalid operator " + '"' + s + '"');
+			resultLabel.setForeground(Color.RED);
 			break;
 		}
 	}
 
 	private void createButton() {
+
 		calculate = new JButton("Calculate");
 		ActionListener listener = new CalculateExpression();
-		calculate.addActionListener(listener);
+		calculate.addActionListener(e -> listener.actionPerformed(e));
 	}
 
 	private void createPanel() {
