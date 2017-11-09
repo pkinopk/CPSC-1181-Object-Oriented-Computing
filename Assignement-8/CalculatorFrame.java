@@ -11,6 +11,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * @author Paulo Kinopk
+ *
+ */
 public class CalculatorFrame extends JFrame {
 	private static final int FRAME_WIDTH = 450;
 	private static final int FRAME_HEIGHT = 100;
@@ -19,6 +23,9 @@ public class CalculatorFrame extends JFrame {
 	private JButton calculate;
 	private JLabel resultLabel;
 
+	/**
+	 * Constructor
+	 */
 	public CalculatorFrame() {
 		resultLabel = new JLabel("");
 		createTextField();
@@ -27,12 +34,19 @@ public class CalculatorFrame extends JFrame {
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 	}
 
+	/**
+	 * Creates the test field
+	 */
 	private void createTextField() {
 
 		final int FIELD_WIDTH = 10;
 		dataEntry = new JTextField(FIELD_WIDTH);
 	}
 
+	/**
+	 * @author Paulo Kinopk
+	 * 
+	 */
 	class CalculateExpression implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 
@@ -75,8 +89,18 @@ public class CalculatorFrame extends JFrame {
 		}
 	}
 
-	private void calculate(int firstInt, String s, int secondInt) {
-		switch (s) {
+	/**
+	 * Performs the calculations based on the operator
+	 * 
+	 * @param firstInt
+	 *            first operand
+	 * @param operator
+	 *            operator
+	 * @param secondInt
+	 *            second operand
+	 */
+	private void calculate(int firstInt, String operator, int secondInt) {
+		switch (operator) {
 		case "+":
 			resultLabel.setText("Result: " + Integer.toString(firstInt + secondInt));
 			break;
@@ -102,12 +126,15 @@ public class CalculatorFrame extends JFrame {
 			resultLabel.setText("Result: " + (int) Math.pow(firstInt, secondInt));
 			break;
 		default:
-			resultLabel.setText("Invalid operator " + '"' + s + '"');
+			resultLabel.setText("Invalid operator " + '"' + operator + '"');
 			resultLabel.setForeground(Color.RED);
 			break;
 		}
 	}
 
+	/**
+	 * Creates the calculate button
+	 */
 	private void createButton() {
 
 		calculate = new JButton("Calculate");
@@ -115,6 +142,9 @@ public class CalculatorFrame extends JFrame {
 		calculate.addActionListener(e -> listener.actionPerformed(e));
 	}
 
+	/**
+	 * Creates the panel
+	 */
 	private void createPanel() {
 		JPanel panel = new JPanel();
 		panel.add(dataEntry);
