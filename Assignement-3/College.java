@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class College {
 
-	ArrayList<Student> college = new ArrayList<Student>();
+	ArrayList<Student2> college = new ArrayList<Student2>();
 
 	/**
 	 * Adds and student to college
@@ -13,7 +13,7 @@ public class College {
 	 * @return the object of the class Student added, or null if no student was
 	 *         added.
 	 */
-	public Student add(Student student) {
+	public Student2 add(Student2 student) {
 		if (college.contains(student)) {
 			return null;
 		} else if (college.add(student)) {
@@ -30,8 +30,8 @@ public class College {
 	 * @return the object of the class Student removed from college, or null if no
 	 *         student was removed
 	 */
-	public Student remove(int studentNum) {
-		Student student = find(studentNum);
+	public Student2 remove(int studentNum) {
+		Student2 student = find(studentNum);
 		if (student == null) {
 			return null;
 		} else {
@@ -48,8 +48,8 @@ public class College {
 	 * @return the object of the class Student matching studentNum, or null if
 	 *         Student was not found
 	 */
-	public Student find(int studentNum) {
-		for (Student student : college) {
+	public Student2 find(int studentNum) {
+		for (Student2 student : college) {
 			if (student.getStudentNum() == studentNum) {
 				return student;
 			}
@@ -65,7 +65,7 @@ public class College {
 	 * @return String loginId of the student, or null if Student was not found.
 	 */
 	public String getLoginId(int studentNum) {
-		Student student = find(studentNum);
+		Student2 student = find(studentNum);
 		if (student == null) {
 			return null;
 		} else {
@@ -86,7 +86,7 @@ public class College {
 	 *         Student was not found
 	 */
 	public boolean addCourse(double grade, int credits, int studentNum) {
-		Student student = find(studentNum);
+		Student2 student = find(studentNum);
 		if (student == null) {
 			return false;
 		} else if (student.addCourse(grade, credits)) {
@@ -119,7 +119,7 @@ public class College {
 		if (college.isEmpty()) {
 			return null;
 		} else {
-			for (Student student : college) {
+			for (Student2 student : college) {
 				printOut += "[Name: " + student.getName() + "] [ID: " + student.getLoginId() + "] [Student#: "
 						+ student.getStudentNum() + "]\n";
 			}
@@ -133,13 +133,13 @@ public class College {
 	 * @return the object of the class Student with the highest GPA, or null if
 	 *         Student college has no students
 	 */
-	public Student getHighestGPA() {
-		Student bestStudent = new Student();
+	public Student2 getHighestGPA() {
+		Student2 bestStudent = new Student2();
 		double highestGPA = 0;
 		if (college.size() == 0)
 			return null;
 		else {
-			for (Student student : college) {
+			for (Student2 student : college) {
 				if (student.getGPA() > highestGPA) {
 					highestGPA = student.getGPA();
 					bestStudent = student;

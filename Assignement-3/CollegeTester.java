@@ -207,7 +207,7 @@ public class CollegeTester {
 			String address = in.nextLine();
 			if (notInteractive)
 				echo(address);
-			Student newbie = new Student(name, address);
+			Student2 newbie = new Student2(name, address);
 			college.add(newbie);
 			printStudent("added", newbie);
 		}
@@ -233,7 +233,7 @@ public class CollegeTester {
 	public static void find(College college, Scanner in, boolean notInteractive) {
 
 		int studentNum = getStudentNumberFromUser(in, notInteractive);
-		Student student = college.find(studentNum);
+		Student2 student = college.find(studentNum);
 		if (student == null) {
 			printError("No match for this student number in our records");
 		} else {
@@ -260,7 +260,7 @@ public class CollegeTester {
 	 *            redirected input from a file
 	 */
 	public static void getLogin(College college, Scanner in, boolean notInteractive) {
-		Student stud = getStudent(college, in, notInteractive);
+		Student2 stud = getStudent(college, in, notInteractive);
 		if (stud == null) {
 			printStudent("login", stud);
 		} else {
@@ -287,7 +287,7 @@ public class CollegeTester {
 	public static void remove(College college, Scanner in, boolean notInteractive) {
 
 		int studentNum = getStudentNumberFromUser(in, notInteractive);
-		Student student = college.find(studentNum);
+		Student2 student = college.find(studentNum);
 		if (student == null) {
 			printError("No match for this student number in our records");
 		} else {
@@ -321,7 +321,7 @@ public class CollegeTester {
 			// student does not exist
 			return;
 		}
-		Student stud = college.find(studentNum);
+		Student2 stud = college.find(studentNum);
 		if (stud == null) {
 			printStudent("no course", stud);
 			return;
@@ -365,7 +365,7 @@ public class CollegeTester {
 	 */
 	public static void findHighestGPA(College college) {
 
-		Student student = college.getHighestGPA();
+		Student2 student = college.getHighestGPA();
 		printStudent("with the highest GPA", student);
 
 	} // findHighestGPA
@@ -439,7 +439,7 @@ public class CollegeTester {
 	 * @param stud
 	 *            whose information will be printed.
 	 */
-	public static void printStudent(String what, Student stud) {
+	public static void printStudent(String what, Student2 stud) {
 		if (stud == null) {
 			// the stud is not in the college: print this out and return
 			printError("No match for this student number in our records");
@@ -471,7 +471,7 @@ public class CollegeTester {
 	 *         if the student number is erroneous or no student with that student
 	 *         number is found in the college.
 	 */
-	public static Student getStudent(College college, Scanner in, boolean notInteractive) {
+	public static Student2 getStudent(College college, Scanner in, boolean notInteractive) {
 		int studentNum = getStudentNumberFromUser(in, notInteractive);
 		if (studentNum == -1) {
 			return null;

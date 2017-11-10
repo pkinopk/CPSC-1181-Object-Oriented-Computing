@@ -1,4 +1,4 @@
-public class Student {
+public class Student2 {
 
 	private static int studentsCount = 7777;
 	public static final double MAX_GRADE = 4.33;
@@ -11,12 +11,12 @@ public class Student {
 	private String loginId;
 
 	// Constructors
-	public Student() {
+	public Student2() {
 		this("unknown", "unknown unknown");
 		studentsCount--;
 	}
 
-	public Student(String studentName, String studentAddress) {
+	public Student2(String studentName, String studentAddress) {
 		name = studentName.trim();
 		address = studentAddress;
 		studentNum = generateStudentID();
