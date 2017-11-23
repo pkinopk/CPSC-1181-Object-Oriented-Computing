@@ -8,6 +8,7 @@ public class PasswordViewer {
 		controller.setTitle("Controller");
 		controller.setLocationRelativeTo(controller);
 		controller.setVisible(true);
+		System.out.println();
 
 	}
 }

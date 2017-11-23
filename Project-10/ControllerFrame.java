@@ -69,7 +69,8 @@ public class ControllerFrame extends JFrame {
 			if (game.getiAmPlayer() == player) {
 				game.setMsg("Your turn to play", Color.BLUE);
 			} else
-				game.setMsg("Your opponent's turn to play", Color.BLUE);
+				System.out.println();
+			game.setMsg("Your opponent's turn to play", Color.BLUE);
 		}
 	}
 

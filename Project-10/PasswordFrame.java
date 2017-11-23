@@ -142,6 +142,7 @@ public class PasswordFrame extends JFrame {
 	}
 
 	public int getiAmPlayer() {
+		System.out.println();
 		return iAmPlayer;
 	}
 }
