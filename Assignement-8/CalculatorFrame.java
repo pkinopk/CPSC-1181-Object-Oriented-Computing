@@ -51,13 +51,13 @@ public class CalculatorFrame extends JFrame {
 		public void actionPerformed(ActionEvent event) {
 
 			String s = dataEntry.getText();
-			Scanner in = new Scanner(s);
+			// Scanner in;
 			int firstInt;
 			String operator;
 			int secondInt;
 			String rest;
 
-			try {
+			try (Scanner in = new Scanner(s)) {
 				firstInt = in.nextInt();
 				try {
 					operator = in.next();

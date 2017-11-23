@@ -16,7 +16,7 @@ public class PasswordFrame extends JFrame {
 	private boolean myTurn;
 	private int iAmPlayer;
 
-	private static final int FRAME_WIDTH = 400;
+	private static final int FRAME_WIDTH = 450;
 	private static final int FRAME_HEIGHT = 300;
 	private static final int NUMBER_OF_DIGITS = 3;
 
@@ -80,15 +80,15 @@ public class PasswordFrame extends JFrame {
 		}
 
 		public void actionPerformed(ActionEvent event) {
-			if (tryPass.length() < 3) {
-				setMsg("Passwords must be " + NUMBER_OF_DIGITS + " digits", Color.RED);
-				// msg.setForeground(Color.RED);
-				// msg.setText("Passwords must be " + NUMBER_OF_DIGITS + " digits");
+			if (myTurn) {
+				if (tryPass.length() < 3) {
+					setMsg("Passwords must be " + NUMBER_OF_DIGITS + " digits", Color.GRAY);
+				} else {
+					setMsg("Password sent to server", Color.BLACK);
+				}
 			} else {
-				setMsg("Password sent to server", Color.BLACK);
-				// msg.setForeground(Color.BLACK);
-				// msg.setText("Password sent to server");
-				// TODO submit the password to server
+				setMsg("Not your turn", Color.GRAY);
+				clearDisplay();
 			}
 		}
 	}
@@ -143,5 +143,14 @@ public class PasswordFrame extends JFrame {
 
 	public int getiAmPlayer() {
 		return iAmPlayer;
+	}
+
+	public String getTryPass() {
+		return tryPass;
+	}
+
+	public void clearDisplay() {
+		this.tryPass = "";
+		this.display.setText("");
 	}
 }
